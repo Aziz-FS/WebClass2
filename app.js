@@ -3,7 +3,7 @@ var session = require('express-session')
 var conn = require('./dbConfig')
 var app = express();
 
-app.set('view engine','ejs'); i
+app.set('view engine','ejs'); 
 app.use(session({
     secret: process.env.SESSION_SECRET || 'yoursecret',
     resave: true,
