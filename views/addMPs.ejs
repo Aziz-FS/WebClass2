@@ -1,0 +1,24 @@
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+
+<div class="container mt-4">
+    <h1>Add MP</h1>
+    <form action="/addMP" method="POST">
+        <div class="mb-3">
+            <label for="name" class="form-label">Name:</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="mb-3">
+            <label for="electorate" class="form-label">Electorate:</label>
+            <input type="text" class="form-control" id="electorate" name="electorate" required>
+        </div>
+        <div class="mb-3">
+            <label for="party" class="form-label">Party:</label>
+            <input type="text" class="form-control" id="party" name="party" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add MP</button>
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<svg width="600" height="200" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <!-- Define a deeper single wave path -->
+      <path id="wavePath" d="M0 100 Q 150 0 300 100 T 600 100" fill="transparent" />
+    </defs>
+    
+    <!-- Bold line representing the neural network path -->
+    <path d="M0 100 Q 150 0 300 100 T 600 100" fill="transparent" stroke="darkblue" stroke-width="8" />
+  
+    <!-- Animate circles (neurons) to move along the deeper wave path -->
+    <circle r="10" fill="white" stroke="blue" stroke-width="3">
+      <animateMotion repeatCount="indefinite" dur="3s">
+        <mpath href="#wavePath" />
+      </animateMotion>
+    </circle>
+  
+    <circle r="8" fill="white" stroke="green" stroke-width="3">
+      <animateMotion repeatCount="indefinite" dur="2s" begin="1s">
+        <mpath href="#wavePath" />
+      </animateMotion>
+    </circle>
+  
+    <circle r="6" fill="white" stroke="red" stroke-width="3">
+      <animateMotion repeatCount="indefinite" dur="4s" begin="2s">
+        <mpath href="#wavePath" />
+      </animateMotion>
+    </circle>
+  </svg>
+  

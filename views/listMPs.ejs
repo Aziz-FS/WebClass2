@@ -1,0 +1,27 @@
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+
+<div class="container mt-4">
+    <h1>List of MPs</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Electorate</th>
+                <th>Party</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% MPsData.forEach(function(mp) { %>
+                <tr>
+                    <td><%= mp.name %></td>
+                    <td><%= mp.electorate %></td>
+                    <td><%= mp.party %></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
