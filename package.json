@@ -8,5 +8,11 @@
   },
   "devDependencies": {
     "typescript": "^5.6.3"
+  },
+  "scripts" : {
+      "start" : "node app",
+      "dev": "nodemon app",
+      "test": "jest",
+      "lint": "eslint"
   }
 }

@@ -97,9 +97,12 @@ app.get('/addMp', function(req,res) {
         }
 })
 
+app.get('/admin1', function(req, res) {
+    res.send('Admin here')
+})
  
 
-app.get('/students', function(req,res) {
+app.get('/_students', function(req,res) {
         let arrayOfStudentNames = ['Kamal','Shingai','Carlos','NL'];
         let responseText ='';
         arrayOfStudentNames.forEach(function(student) {
