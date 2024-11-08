@@ -40,6 +40,10 @@ app.get("/register", function(req, res) {
     res.render("register.ejs",{loggedIn: req.session.loggedIn });
 })
 
+app.get("/deleteUser", function(req, res) {
+    res.send("delete user is called");
+})
+
 app.post("/register", function(req, res) {
     let name = req.body.name;
     let password = req.body.password;
