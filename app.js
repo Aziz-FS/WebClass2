@@ -14,6 +14,10 @@ app.use('/public', express.static('public'))
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
 
+app.get('/home', function (req, res){ 
+    res.render("home", {loggedIn: req.session.loggedIn }); 
+    }); 
+
 app.get('/', function (req, res){ 
 res.render("home", {loggedIn: req.session.loggedIn }); 
 }); 
@@ -46,7 +50,8 @@ app.post("/register", function(req, res) {
         console.log('user registered');
         res.send('user '+name+' registered')
     })
-    res.redirect("/"); 
+    res.redirect("/home"); 
+    next();
 })
 
 app.get('/members', function (req, res){ 
@@ -102,7 +107,7 @@ app.get('/admin1', function(req, res) {
 })
  
 
-app.get('/_students', function(req,res) {
+app.get('/students', function(req,res) {
         let arrayOfStudentNames = ['Kamal','Shingai','Carlos','NL'];
         let responseText ='';
         arrayOfStudentNames.forEach(function(student) {
