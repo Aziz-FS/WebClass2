@@ -52,10 +52,9 @@ app.post("/register", function(req, res) {
     conn.query(insert, function(err, result) {
         if(err) throw err;
         console.log('user registered');
-        res.send('user '+name+' registered')
+        
     })
     res.redirect("/home"); 
-    next();
 })
 
 app.get('/members', function (req, res){ 
