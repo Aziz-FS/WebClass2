@@ -13,6 +13,7 @@
       "start" : "node app",
       "dev": "nodemon app",
       "test": "jest",
-      "lint": "eslint"
+      "lint": "eslint",
+      "debug": "nodemon --inspect app.js"
   }
 }

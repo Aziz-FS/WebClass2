@@ -37,6 +37,8 @@ app.get('/logout', function (req, res){
     }); 
 
 app.get("/register", function(req, res) {
+    console.log("bp")
+    console.log("Debug")
     res.render("register.ejs",{loggedIn: req.session.loggedIn });
 })
 
@@ -48,6 +50,7 @@ app.post("/register", function(req, res) {
     let name = req.body.name;
     let password = req.body.password;
     let email = req.body.email;
+    console.log("Debug")
     const insert = `INSERT INTO users (name, password,email) VALUES ("${name}", "${password}", "${email}")`;
     conn.query(insert, function(err, result) {
         if(err) throw err;
@@ -121,5 +124,5 @@ app.get('/students', function(req,res) {
 
 
 
-app.listen(3000); 
-console.log('Node app is running on port 3000');
+app.listen(3001); 
+console.log('Node app is running on port 3001');
