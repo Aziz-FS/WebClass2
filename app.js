@@ -16,32 +16,32 @@ APP.use( EXPRESS.json());
 APP.use( EXPRESS.urlencoded({extended:true}))
 
 APP.get('/home', function (req, res){ 
-    res.render("home", {loggedIn: req. SESSION.loggedIn }); 
+    res.render("home", {loggedIn: req.session.loggedIn }); 
     }); 
 
 
 APP.get('/', function (req, res){ 
-res.render("home", {loggedIn: req. SESSION.loggedIn }); 
+res.render("home", {loggedIn: req.session.loggedIn }); 
 }); 
 APP.get('/auckland', function (req, res){ 
-    res.render("auckland", {loggedIn: req. SESSION.loggedIn }); 
+    res.render("auckland", {loggedIn: req.session.loggedIn }); 
     });
 APP.get('/beaches', function (req, res){ 
-    res.render("beaches", {loggedIn: req. SESSION.loggedIn }); 
+    res.render("beaches", {loggedIn: req.session.loggedIn }); 
     }); 
 APP.get('/login', function (req, res){ 
-    res.render("login.ejs", {loggedIn: req. SESSION.loggedIn }); 
+    res.render("login.ejs", {loggedIn: req.session.loggedIn }); 
     }); 
 
 APP.get('/logout', function (req, res){ 
-    req. SESSION.destroy();
+    req.session.destroy();
     res.redirect("/"); 
     }); 
 
 APP.get("/register", function(req, res) {
     console.log("bp")
     console.log("Debug")
-    res.render("register.ejs",{loggedIn: req. SESSION.loggedIn });
+    res.render("register.ejs",{loggedIn: req.session.loggedIn });
 })
 
 APP.get("/deleteUser", function(req, res) {
@@ -63,8 +63,8 @@ APP.post("/register", function(req, res) {
 })
 
 APP.get('/members', function (req, res){ 
-    if(req. SESSION.loggedIn === true) {
-        res.render("membersOnly.ejs",{loggedIn: req. SESSION.loggedIn}); 
+    if(req.session.loggedIn === true) {
+        res.render("membersOnly.ejs",{loggedIn: req.session.loggedIn}); 
     } else {
         res.send("Please login");
     }
@@ -79,8 +79,8 @@ APP.post('/auth',function(req,res) {
                 if(error) console.error(error);
                 if(results.length > 0) {
                     console.log("log")
-                    req. SESSION.loggedIn = true;
-                    req. SESSION.username = name;
+                    req.session.loggedIn = true;
+                    req.session.username = name;
                     res.redirect("/members")
                 } else {
                     res.send('Invalid user or wrong password');
@@ -98,12 +98,12 @@ APP.get('/listMPs', function(req,res) {
      DB_CONN.query("SELECT * FROM mps", function (err, listOfMps) {
         if (err) throw err;
         console.log(listOfMps);        
-        res.render('listMPs', { MPsData:listOfMps, loggedIn:req. SESSION.loggedIn});
+        res.render('listMPs', { MPsData:listOfMps, loggedIn:req.session.loggedIn});
     })
 })
 
 APP.get('/addMp', function(req,res) {
-        if(req. SESSION.loggedIn === true) {
+        if(req.session.loggedIn === true) {
             res.render('addMP');
         } else {
             res.send('Please be a registered member, if you want to add an MP');
