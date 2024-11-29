@@ -11,4 +11,4 @@ A Node.js web application for tourism information and member management.
 
 ## Environment Variables
 
-Create a `.env` file with the following variables:
+Rename the `.env_rename_me` to .env and provide all the values
