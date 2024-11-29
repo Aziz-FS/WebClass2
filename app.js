@@ -16,12 +16,23 @@ APP.use( EXPRESS.json());
 APP.use( EXPRESS.urlencoded({extended:true}))
 
 APP.get('/home', function (req, res){ 
-    res.render("home", {loggedIn: req.session.loggedIn }); 
+    const viewModel = {
+        loggedIn: req.session.loggedIn,
+        pageTitle: 'Home',
+        currentUser: req.session.username
+    };
+    res.render("home", viewModel); 
     }); 
 
 
 APP.get('/', function (req, res){ 
-res.render("home", {loggedIn: req.session.loggedIn }); 
+    const viewModel = {
+        loggedIn: req.session.loggedIn,
+        pageTitle: 'Home',
+        currentUser: req.session.username,
+        "Time": "No time"
+    };
+res.render("home", viewModel); 
 }); 
 APP.get('/auckland', function (req, res){ 
     res.render("auckland", {loggedIn: req.session.loggedIn }); 
@@ -64,7 +75,13 @@ APP.post("/register", function(req, res) {
 
 APP.get('/members', function (req, res){ 
     if(req.session.loggedIn === true) {
-        res.render("membersOnly.ejs",{loggedIn: req.session.loggedIn}); 
+        const viewModel = {
+            loggedIn: req.session.loggedIn,
+            pageTitle: 'Home',
+            currentUser: req.session.username,
+            "Time": "No time"
+        };
+        res.render("membersOnly.ejs", viewModel); 
     } else {
         res.send("Please login");
     }
@@ -95,10 +112,17 @@ APP.post('/auth',function(req,res) {
 })
 
 APP.get('/listMPs', function(req,res) {
-     DB_CONN.query("SELECT * FROM mps", function (err, listOfMps) {
+    DB_CONN.query("SELECT * FROM mps", function (err, listOfMps) {
         if (err) throw err;
-        console.log(listOfMps);        
-        res.render('listMPs', { MPsData:listOfMps, loggedIn:req.session.loggedIn});
+        
+        const viewModel = {
+            MPsData: listOfMps,
+            loggedIn: req.session.loggedIn,
+            pageTitle: 'MPs List',
+            currentUser: req.session.username
+        };
+        
+        res.render('listMPs', viewModel);
     })
 })
 

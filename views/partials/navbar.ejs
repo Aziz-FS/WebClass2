@@ -28,5 +28,9 @@
                 </li>
             </ul>
         </div>
+       
+        <% if(loggedIn) { %>
+        <div class="navbar-text"><%= currentUser %></div>
+        <% } %>
     </div>
 </nav>
