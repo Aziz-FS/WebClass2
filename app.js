@@ -156,7 +156,9 @@ APP.get('/students', function(req,res) {
         res.send(responseText);
 })
 
-
+APP.get('/brodie', (req, res) => {
+    res.render('autos/brodieHome');
+});
 
 APP.listen(3002); 
 console.log('Node APP is running on port 3002');
