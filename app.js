@@ -24,6 +24,14 @@ APP.get('/home', function (req, res){
     res.render("home", viewModel); 
     }); 
 
+    APP.get('/auto', function (req, res){ 
+        const viewModel = {
+            loggedIn: req.session.loggedIn,
+            pageTitle: 'Auto',
+            currentUser: req.session.username
+        };
+        res.render("autos/autoHome", viewModel); 
+        });
 
 APP.get('/', function (req, res){ 
     const viewModel = {
@@ -150,5 +158,5 @@ APP.get('/students', function(req,res) {
 
 
 
-APP.listen(3001); 
-console.log('Node APP is running on port 3001');
+APP.listen(3002); 
+console.log('Node APP is running on port 3002');
