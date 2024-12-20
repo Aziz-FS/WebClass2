@@ -61,6 +61,47 @@ CREATE TABLE Tourist_Activity (
     PRIMARY KEY (Tourist_Email, Activity_ID)
 );
 
+CREATE TABLE Users (
+    user_id VARCHAR(100) PRIMARY KEY,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    role ENUM('admin', 'staff', 'tourist') NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    last_login DATETIME,
+    is_active BOOLEAN DEFAULT TRUE,
+    CONSTRAINT chk_role CHECK (role IN ('admin', 'staff', 'tourist'))
+);
+
+CREATE TABLE Audit_Log (
+    log_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id VARCHAR(100),
+    action_type ENUM('create', 'update', 'delete') NOT NULL,
+    table_name VARCHAR(50) NOT NULL,
+    record_id VARCHAR(100),
+    action_timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+    action_details TEXT,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+);
+
+-- Insert default admin user (password should be hashed in production)
+INSERT INTO Users (user_id, username, password, email, role)
+VALUES ('ADMIN001', 'admin', 'admin123', 'admin@tourism.com', 'admin');
+
+-- Insert default staff user
+INSERT INTO Users (user_id, username, password, email, role)
+VALUES ('STAFF001', 'staff1', 'staff123', 'staff1@tourism.com', 'staff'),
+('STAFF002', 'staff2', 'staff123', 'staff2@tourism.com', 'staff'),
+('STAFF003', 'staff3', 'staff123', 'staff3@tourism.com', 'staff'),
+('STAFF004', 'staff4', 'staff123', 'staff4@tourism.com', 'staff'),
+('STAFF005', 'staff5', 'staff123', 'staff5@tourism.com', 'staff'),
+('STAFF006', 'staff6', 'staff123', 'staff6@tourism.com', 'staff'),
+('STAFF007', 'staff7', 'staff123', 'staff7@tourism.com', 'staff'),
+('STAFF008', 'staff8', 'staff123', 'staff8@tourism.com', 'staff'),
+('STAFF009', 'staff9', 'staff123', 'staff9@tourism.com', 'staff'),
+('ADMIN002', 'admin_backup', 'admin123', 'admin_backup@tourism.com', 'admin');
+
+
 
 -- CREATE TABLE Tourist_Place (
 --     Tourist_Email VARCHAR(100),
